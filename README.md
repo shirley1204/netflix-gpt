@@ -4,6 +4,19 @@
 -Install Tailwind css
 -Header
 -Login Form
+-Routing of App
+-Sign Up form
+-Form validation
+-useRef Hook
+-Firebase  setup
+-Deploying our app to production
+-Create Signup user Account
+-Implement Sign In user Api
+-Created Redux store with useSlice
+-Implemented Sign out 
+-Updated Profile Api Call
+-Fetch Movies From TMDB Movies
+
 
 
 
