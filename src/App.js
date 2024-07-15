@@ -1,4 +1,4 @@
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import Body from "./components/Body";
 import appStore from "./utils/appStore";
 

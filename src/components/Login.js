@@ -1,11 +1,11 @@
 import { checkValidDat } from "../utils/Validate";
 import Header from "./Header";
 import { useRef, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/firebase"
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { LOGO, Photo_url } from "../utils/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -13,7 +13,6 @@ const Login = () => {
   const email=useRef(null);
   const passward=useRef(null);
   const name =useRef(null);
-  const navigate=useNavigate();
   const dispatch=useDispatch();
 
   const toggleSignInForm = () => {
@@ -31,13 +30,12 @@ const Login = () => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    // console.log("user",user);
     updateProfile(user, {
-      displayName: name.current.value, photoURL: "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp"
+      displayName: name.current.value, photoURL: Photo_url
     }).then(() => {
       const {uid,email,displayName,photoURL} = auth.currentUser;
       dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}))
-      navigate("/browse")
+      // navigate("/browse")
       // ...
     }).catch((error) => {
       // An error occurred
@@ -58,8 +56,7 @@ const Login = () => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    // console.log("user",user);
-    navigate("/browse")
+    // navigate("/browse")
     // ...
   })
   .catch((error) => {
@@ -78,8 +75,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="
-         https://assets.nflxext.com/ffe/siteui/vlv3/8728e059-7686-4d2d-a67a-84872bd71025/e90516bd-6925-4341-a6cf-0b9f3d0c140a/IN-en-20240708-POP_SIGNUP_TWO_WEEKS-perspective_WEB_34324b52-d094-482b-8c2a-708dc64c9065_large.jpg"
+        src={LOGO}
           alt="bg-img"
         />
       </div>
